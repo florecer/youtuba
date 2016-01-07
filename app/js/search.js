@@ -2,12 +2,21 @@
 // https://developers.google.com/youtube/terms
 
 var catchPlayByKeyword = {};
+var catchSearchByKeywordTitle = "";
+var catchSearchByKeywordDesc = "";
+var catchSearchByKeywordKind = "";
 
 // Helper function to display JavaScript value on HTML page.
 function showResponse(response) {
     var responseString = JSON.stringify(response, '', 2);
     document.getElementById('response').innerHTML += responseString;
     catchPlayByKeyword = response.items[0].id.videoId;
+    if( response.items[0].id.kind != "youtube#video") {
+      catchPlayByKeyword = "tbwUSJ7a_K0";
+    }
+    catchSearchByKeywordTitle = response.items[0].snippet.title;
+    catchSearchByKeywordDesc = response.items[0].snippet.description;
+    catchSearchByKeywordKind = response.items[0].id.kind;
 }
 
 // Called automatically when JavaScript client library is loaded.
@@ -88,4 +97,14 @@ function onPlayerStateChange(event) {
     console.log("Set player.videoId to " + player.videoId);
     console.log("videoCounter = " + videoCounter);
   }
+}
+
+// Helper function to display keyWordSearch JavaScript vars value on HTML page.
+function showKeyWordSearch(keyWordSearchDisplay) {
+    document.getElementById('keyWordSearchDisplay').innerHTML += catchSearchByKeywordTitle;
+    document.getElementById('keyWordSearchDisplay').innerHTML += "<br>";
+    document.getElementById('keyWordSearchDisplay').innerHTML += catchSearchByKeywordDesc;
+    document.getElementById('keyWordSearchDisplay').innerHTML += "<br>";
+    document.getElementById('keyWordSearchDisplay').innerHTML += catchSearchByKeywordKind;
+    document.getElementById('keyWordSearchDisplay').innerHTML += "<br>";
 }
