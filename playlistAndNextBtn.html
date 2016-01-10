@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Search</title>
+  </head>
+  <body>
+    Search by keyword:
+    <input type="text" id="keyWordSearch" placeholder="to search"><button id="searchByKeyword" onclick="search()">Search</button>
+
+    <p id="dispInfoTitle0" style="font-weight:bold" onclick="selectByButton0()">Click Title to play</p>
+    <details id="dispInfoDesc0"></details>
+    <p id="dispInfoTitle1" style="font-weight:bold" onclick="selectByButton1()"></p>
+    <details id="dispInfoDesc1"></details>
+    <p id="dispInfoTitle2" style="font-weight:bold" onclick="selectByButton2()"></p>
+    <details id="dispInfoDesc2"></details>
+    <p id="dispInfoTitle3" style="font-weight:bold" onclick="selectByButton3()"></p>
+    <details id="dispInfoDesc3"></details>
+    <p id="dispInfoTitle4" style="font-weight:bold" onclick="selectByButton4()"></p>
+    <details id="dispInfoDesc4"></details>
+    <div id="player"></div>
+
+    <button id="playListButton" onclick="playListButton()">play!</button>
+    <button id="nextVidButton" onclick="nextVidButton()">Next Video -->></button>
+    <pre id="response"></pre>
+    <!-- staging
+    <iframe id="iFramePlay" width="480" height="270" src="" frameborder="0"></iframe>
+
+    end staging -->
+    <script src="app/js/playlistAndNextBtn.js" type="text/javascript"></script>
+    <script src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript"></script>
+    <script src ="https://www.youtube.com/iframe_api"></script>
+  </body>
+</html>
