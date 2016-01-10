@@ -51,7 +51,6 @@ function showResponse(response) {
 
 var player;
 
-
 function playVideo0() {
   console.log("http://www.youtube.com/embed/" + catchSearchByKeywordId[0] + "?autoplay=1");
   document.getElementById('iFramePlay').src = "http://www.youtube.com/embed/" + catchSearchByKeywordId[0] + "?autoplay=1";

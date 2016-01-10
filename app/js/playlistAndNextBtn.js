@@ -47,7 +47,6 @@ function showResponse(response) {
 }
 
 function onYouTubeIframeAPIReady() {
-  console.log("onIframeApi()");
 }
 
 var videoListIds = [];
@@ -66,7 +65,6 @@ function playList() {
 }
 
 function onPlayerReady() {
-  console.log("onPlayerReady()");
 }
 
 var player = {};
@@ -90,7 +88,6 @@ function selectByButton0() {
   countSelections++;
   playByKeywordId = 0;
   videoListIds[countSelections] = catchSearchByKeywordId[0];
-//  player.loadVideoById(catchSearchByKeywordId[0]);
 }
 
 function selectByButton1() {
@@ -98,7 +95,6 @@ function selectByButton1() {
   countSelections++;
   playByKeywordId = 1;
   videoListIds[countSelections] = catchSearchByKeywordId[1];
-//  player.loadVideoById(catchSearchByKeywordId[1]);
 }
 
 function selectByButton2() {
@@ -106,7 +102,6 @@ function selectByButton2() {
   countSelections++;
   playByKeywordId = 2;
   videoListIds[countSelections] = catchSearchByKeywordId[2];
-//  player.loadVideoById(catchSearchByKeywordId[2]);
 }
 
 function selectByButton3() {
@@ -114,14 +109,12 @@ function selectByButton3() {
   countSelections++;
   playByKeywordId = 3;
   videoListIds[countSelections] = catchSearchByKeywordId[3];
-//  player.loadVideoById(catchSearchByKeywordId[3]);
 }
 
 function selectByButton4() {
-  console.log("selectByButton4");
+  console.log("selectByButton3");
   countSelections++;
   playByKeywordId = 4;
-//  player.loadVideoById(catchSearchByKeywordId[4]);
 videoListIds[countSelections] = catchSearchByKeywordId[4];
 }
 
@@ -132,14 +125,11 @@ function playListButton() {
 var countPlaylistOverflow = 0;
 
 function nextVidButton() {
-  console.log("nextVidButton");
   if(videoCount < videoListIds.length -1) {
-    console.log(true);
     videoCount++;
     player.loadVideoById(videoListIds[videoCount]);
   }
   else {
-    console.log(false);
     player.loadVideoById(videoListIds[countPlaylistOverflow]);
     countPlaylistOverflow++;
     if(countPlaylistOverflow >= videoListIds.length) {countPlaylistOverflow = 0;}

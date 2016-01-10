@@ -60,7 +60,8 @@ function onPlayerStateChange(event) {
     console.log(videoCount);
     // videoId xwtdhWltSIg
     console.log(player);
-    player.loadVideoById(videoListIds[countSelections]);
+//    player.loadVideoById(videoListIds[countSelections]);
+    player.loadVideoById("ijZRCIrTgQc");
   }
 }
 
