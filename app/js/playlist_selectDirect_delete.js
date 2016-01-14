@@ -149,6 +149,9 @@ function addInfo2Playlist(l) {
   add2PlaylistInfo.push(catchSearchByKeywordTitle[l]);
 }
 
+var countDeleted = 0;
+var pos2delete = 0;
+
 function displayPlaylist() {
   for(var k = 0; k < add2PlaylistInfo.length; k++) {
     var para = document.createElement("P");
@@ -168,10 +171,19 @@ function displayPlaylist() {
     var text = document.createTextNode("Delete video");
     btn.appendChild(text);
     btn.addEventListener("click", function deleteVideo() {
-      var ref = parseInt(this.id.slice(9,10));
-      videoListIds.splice(ref, 1);
-      var removeFromPlaylist = document.getElementById("added2playlist" + ref);
-      var removeBtnDel = document.getElementById("btnDelete" + ref);
+      console.log("countDeleted: " + countDeleted);
+      if(this.id.length === 10) { pos2delete = parseInt(this.id.slice(9,10)); }
+      else if(this.id.length === 11) { pos2delete = parseInt(this.id.slice(9,11)); }
+      else if(this.id.length === 12) { pos2delete = parseInt(this.id.slice(9,12)); }
+      console.log("pos2delete: " + pos2delete);
+      console.log("video length: " + videoListIds.length);
+      console.log(videoListIds);
+      if(pos2delete >= videoListIds.length) { videoListIds.splice(videoListIds.length - 1, 1)}
+      else { videoListIds.splice(pos2delete - countDeleted, 1); }
+      countDeleted++;
+      console.log(videoListIds);
+      var removeFromPlaylist = document.getElementById("added2playlist" + pos2delete);
+      var removeBtnDel = document.getElementById("btnDelete" + pos2delete);
       removeFromPlaylist.parentElement.removeChild(removeFromPlaylist);
       removeBtnDel.parentElement.removeChild(removeBtnDel);
     });
