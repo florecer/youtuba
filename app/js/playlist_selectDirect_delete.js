@@ -73,8 +73,8 @@ function onPlayerReady() {
 var player = {};
 function createPlayer() {
   player = new YT.Player('player', {
-    height: '390',
-    width: '640',
+    height: '190',
+    width: '450',
     videoId: videoListIds[0],
     playerVars: { 'autoplay': 1 },
     events: {
@@ -151,6 +151,8 @@ function addInfo2Playlist(l) {
 
 var countDeleted = 0;
 var pos2delete = 0;
+var deletedVideosArr = [];
+var index2delete = 0;
 
 function displayPlaylist() {
   for(var k = 0; k < add2PlaylistInfo.length; k++) {
@@ -176,11 +178,19 @@ function displayPlaylist() {
       else if(this.id.length === 11) { pos2delete = parseInt(this.id.slice(9,11)); }
       else if(this.id.length === 12) { pos2delete = parseInt(this.id.slice(9,12)); }
       console.log("pos2delete: " + pos2delete);
-      console.log("video length: " + videoListIds.length);
+      console.log("videos length: " + videoListIds.length);
       console.log(videoListIds);
-      if(pos2delete >= videoListIds.length) { videoListIds.splice(videoListIds.length - 1, 1)}
-      else { videoListIds.splice(pos2delete - countDeleted, 1); }
+      console.log("to delete: " + videoListIds.splice(pos2delete, 1));
+      deletedVideosArr[countDeleted] = pos2delete;
+      console.log("deletedVideosArr:  " + deletedVideosArr);
+      index2delete = deletedVideosArr.filter(lower2Delete).length;
+      console.log("index2delete: " + index2delete);
+      if(index2delete !== 0 && index2delete < pos2delete) { videoListIds.splice(pos2delete - index2delete, 1); console.log("DELETIING0"); }
+      else if(pos2delete > videoListIds.length) { videoListIds.splice(pos2delete - countDeleted, 1);  console.log("DELETIING1"); }
+      else if(pos2delete === 0) { videoListIds.splice(pos2delete, 1); console.log("DELETIING2"); }
+      else { videoListIds.splice(pos2delete, 1); console.log("DELETIING3"); }
       countDeleted++;
+      // half sec video youtube dhj67sSPEwA
       console.log(videoListIds);
       var removeFromPlaylist = document.getElementById("added2playlist" + pos2delete);
       var removeBtnDel = document.getElementById("btnDelete" + pos2delete);
@@ -189,4 +199,8 @@ function displayPlaylist() {
     });
     document.getElementById("dispPlaylistContainer").appendChild(btn);
   }
+}
+
+function lower2Delete (positionsBelow) {
+  return positionsBelow < pos2delete;
 }
