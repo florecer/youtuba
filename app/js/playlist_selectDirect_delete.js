@@ -152,7 +152,7 @@ function addInfo2Playlist(l) {
 var countDeleted = 0;
 var pos2delete = 0;
 var deletedVideosArr = [];
-var index2delete = 0;
+var belowVideosDeleted = 0;
 
 function displayPlaylist() {
   for(var k = 0; k < add2PlaylistInfo.length; k++) {
@@ -180,15 +180,15 @@ function displayPlaylist() {
       console.log("pos2delete: " + pos2delete);
       console.log("videos length: " + videoListIds.length);
       console.log(videoListIds);
-      console.log("to delete: " + videoListIds.splice(pos2delete, 1));
       deletedVideosArr[countDeleted] = pos2delete;
       console.log("deletedVideosArr:  " + deletedVideosArr);
-      index2delete = deletedVideosArr.filter(lower2Delete).length;
-      console.log("index2delete: " + index2delete);
-      if(index2delete !== 0 && index2delete < pos2delete) { videoListIds.splice(pos2delete - index2delete, 1); console.log("DELETIING0"); }
-      else if(pos2delete > videoListIds.length) { videoListIds.splice(pos2delete - countDeleted, 1);  console.log("DELETIING1"); }
-      else if(pos2delete === 0) { videoListIds.splice(pos2delete, 1); console.log("DELETIING2"); }
-      else { videoListIds.splice(pos2delete, 1); console.log("DELETIING3"); }
+      belowVideosDeleted = deletedVideosArr.filter(lower2Delete).length;
+      console.log("belowVideosDeleted: " + belowVideosDeleted);
+      var video2deleteByPosition = pos2delete - belowVideosDeleted;
+      console.log("indexVideo2delete: " + video2deleteByPosition);
+      console.log("to delete: " + videoListIds.splice(video2deleteByPosition, 1));
+      videoListIds.splice(video2deleteByPosition, 0);
+      console.log("delete zero 0")
       countDeleted++;
       // half sec video youtube dhj67sSPEwA
       console.log(videoListIds);
