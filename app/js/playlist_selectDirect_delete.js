@@ -35,14 +35,33 @@ var catchSearchByKeywordDesc = [];
 
 // Helper function to display JavaScript value on HTML page.
 function showResponse(response) {
+  var removeOldPlaylist = document.getElementsByClassName("trackResult");
+  if (removeOldPlaylist.length > 0) {
+    for (var l = removeOldPlaylist.length - 1; l >= 0; l--) {
+      removeOldPlaylist[l].parentNode.removeChild(removeOldPlaylist[l]);
+    }
+  }
   var responseString = JSON.stringify(response, '', 2);
   document.getElementById('response').innerHTML += responseString;
-  for (var i =0; i<response.items.length; i++) {
+  for (var i = 0; i < response.items.length; i++) {
+    var trackResultElement = document.createElement("div");
+    trackResultElement.className = "trackResult";
+    trackResultElement.id = i;
+    var paragraphTrack = document.createElement("p");
+    var detailsTrack = document.createElement("details");
     catchSearchByKeywordTitle[i] = response.items[i].snippet.title;
     catchSearchByKeywordDesc[i] = response.items[i].snippet.description;
     catchSearchByKeywordId[i] = response.items[i].id.videoId;
-    document.getElementById("dispInfoTitle" + i).innerHTML = catchSearchByKeywordTitle[i];
-    document.getElementById("dispInfoDesc" + i).innerHTML = catchSearchByKeywordDesc[i];
+    paragraphTrack.innerHTML = catchSearchByKeywordTitle[i];
+    detailsTrack.innerHTML = catchSearchByKeywordDesc[i];
+    trackResultElement.addEventListener("click", function selectByButton() {
+      videoListIds.push(catchSearchByKeywordId[this.id]);
+      addInfo2Playlist(this.id);
+      displayPlaylist();
+    });
+    trackResultElement.appendChild(paragraphTrack);
+    trackResultElement.appendChild(detailsTrack);
+    document.getElementById("searchResults").appendChild(trackResultElement);
   }
 }
 
@@ -83,53 +102,6 @@ function createPlayer() {
     }
   });
   videoCount++;
-}
-
-var playByKeywordId = 0;
-var countSelections = 0;
-function selectByButton0() {
-  console.log("selectByButton0");
-  playByKeywordId = 0;
-  countSelections++;
-  videoListIds.push(catchSearchByKeywordId[0]);
-  addInfo2Playlist(0);
-  displayPlaylist();
-}
-
-function selectByButton1() {
-  console.log("selectByButton1");
-  playByKeywordId = 1;
-  videoListIds.push(catchSearchByKeywordId[1]);
-  countSelections++;
-  addInfo2Playlist(1);
-  displayPlaylist();
-}
-
-function selectByButton2() {
-  console.log("selectByButton2");
-  playByKeywordId = 2;
-  videoListIds.push(catchSearchByKeywordId[2]);
-  countSelections++;
-  addInfo2Playlist(2);
-  displayPlaylist();
-}
-
-function selectByButton3() {
-  console.log("selectByButton3");
-  playByKeywordId = 3;
-  videoListIds.push(catchSearchByKeywordId[3]);
-  countSelections++;
-  addInfo2Playlist(3);
-  displayPlaylist();
-}
-
-function selectByButton4() {
-  console.log("selectByButton4");
-  playByKeywordId = 4;
-  videoListIds.push(catchSearchByKeywordId[4]);
-  countSelections++;
-  addInfo2Playlist(4);
-  displayPlaylist();
 }
 
 function playListButton() {
