@@ -177,21 +177,11 @@ function displayPlaylist() {
       if(this.id.length === 10) { pos2delete = parseInt(this.id.slice(9,10)); }
       else if(this.id.length === 11) { pos2delete = parseInt(this.id.slice(9,11)); }
       else if(this.id.length === 12) { pos2delete = parseInt(this.id.slice(9,12)); }
-      console.log("pos2delete: " + pos2delete);
-      console.log("videos length: " + videoListIds.length);
-      console.log(videoListIds);
       deletedVideosArr[countDeleted] = pos2delete;
-      console.log("deletedVideosArr:  " + deletedVideosArr);
       belowVideosDeleted = deletedVideosArr.filter(lower2Delete).length;
-      console.log("belowVideosDeleted: " + belowVideosDeleted);
       var video2deleteByPosition = pos2delete - belowVideosDeleted;
-      console.log("indexVideo2delete: " + video2deleteByPosition);
-      console.log("to delete: " + videoListIds.splice(video2deleteByPosition, 1));
-      videoListIds.splice(video2deleteByPosition, 0);
-      console.log("delete zero 0")
+      videoListIds.splice(video2deleteByPosition, 1);
       countDeleted++;
-      // half sec video youtube dhj67sSPEwA
-      console.log(videoListIds);
       var removeFromPlaylist = document.getElementById("added2playlist" + pos2delete);
       var removeBtnDel = document.getElementById("btnDelete" + pos2delete);
       removeFromPlaylist.parentElement.removeChild(removeFromPlaylist);
