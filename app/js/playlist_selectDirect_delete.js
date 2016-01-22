@@ -90,41 +90,46 @@ var countSelections = 0;
 function selectByButton0() {
   console.log("selectByButton0");
   playByKeywordId = 0;
-  videoListIds[countSelections] = catchSearchByKeywordId[0];
   countSelections++;
+  videoListIds.push(catchSearchByKeywordId[0]);
   addInfo2Playlist(0);
+  displayPlaylist();
 }
 
 function selectByButton1() {
   console.log("selectByButton1");
   playByKeywordId = 1;
-  videoListIds[countSelections] = catchSearchByKeywordId[1];
+  videoListIds.push(catchSearchByKeywordId[1]);
   countSelections++;
   addInfo2Playlist(1);
+  displayPlaylist();
 }
 
 function selectByButton2() {
   console.log("selectByButton2");
   playByKeywordId = 2;
-  videoListIds[countSelections] = catchSearchByKeywordId[2];
+  videoListIds.push(catchSearchByKeywordId[2]);
   countSelections++;
   addInfo2Playlist(2);
+  displayPlaylist();
 }
 
 function selectByButton3() {
   console.log("selectByButton3");
   playByKeywordId = 3;
-  videoListIds[countSelections] = catchSearchByKeywordId[3];
+  videoListIds.push(catchSearchByKeywordId[3]);
   countSelections++;
   addInfo2Playlist(3);
+  displayPlaylist();
 }
 
 function selectByButton4() {
   console.log("selectByButton4");
   playByKeywordId = 4;
-  videoListIds[countSelections] = catchSearchByKeywordId[4];
+  videoListIds.push(catchSearchByKeywordId[4]);
   countSelections++;
   addInfo2Playlist(4);
+  displayPlaylist();
 }
 
 function playListButton() {
@@ -155,8 +160,14 @@ var deletedVideosArr = [];
 var belowVideosDeleted = 0;
 
 function displayPlaylist() {
+  var removeOldPlaylist = document.getElementsByClassName("trackSelector");
+  if (removeOldPlaylist.length > 0) {
+    for (var l = removeOldPlaylist.length - 1; l >= 0; l--) {
+      removeOldPlaylist[l].parentNode.removeChild(removeOldPlaylist[l]);
+    }
+  }
   for(var k = 0; k < add2PlaylistInfo.length; k++) {
-    var para = document.createElement("P");
+    var para = document.createElement("p");
     var trackNo = document.createTextNode("track No. " + k + " ");
     var info = document.createTextNode(add2PlaylistInfo[k]);
     para.id = "added2playlist" + k;
@@ -167,27 +178,23 @@ function displayPlaylist() {
     });
     para.appendChild(trackNo);
     para.appendChild(info);
-    document.getElementById("dispPlaylistContainer").appendChild(para);
     var btn = document.createElement("BUTTON");
     btn.id = "btnDelete" + k;
+    btn.catchPosition = k;
     var text = document.createTextNode("Delete video");
     btn.appendChild(text);
     btn.addEventListener("click", function deleteVideo() {
-      console.log("countDeleted: " + countDeleted);
-      if(this.id.length === 10) { pos2delete = parseInt(this.id.slice(9,10)); }
-      else if(this.id.length === 11) { pos2delete = parseInt(this.id.slice(9,11)); }
-      else if(this.id.length === 12) { pos2delete = parseInt(this.id.slice(9,12)); }
-      deletedVideosArr[countDeleted] = pos2delete;
-      belowVideosDeleted = deletedVideosArr.filter(lower2Delete).length;
-      var video2deleteByPosition = pos2delete - belowVideosDeleted;
-      videoListIds.splice(video2deleteByPosition, 1);
+      pos2delete = parseInt(this.catchPosition);
+      videoListIds.splice(pos2delete, 1);
+      add2PlaylistInfo.splice(pos2delete, 1);
       countDeleted++;
-      var removeFromPlaylist = document.getElementById("added2playlist" + pos2delete);
-      var removeBtnDel = document.getElementById("btnDelete" + pos2delete);
-      removeFromPlaylist.parentElement.removeChild(removeFromPlaylist);
-      removeBtnDel.parentElement.removeChild(removeBtnDel);
+      displayPlaylist();
     });
-    document.getElementById("dispPlaylistContainer").appendChild(btn);
+    var divCont = document.createElement("div");
+    divCont.className = "trackSelector";
+    divCont.appendChild(para);
+    divCont.appendChild(btn);
+    document.getElementById("dispPlaylistContainer").appendChild(divCont);
   }
 }
 
