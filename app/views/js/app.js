@@ -18,7 +18,7 @@ function onYouTubeApiLoad() {
 }
 
 function search(pageToken) {
-	inputKeySearch = document.getElementById("keyWordSearch").value;	  
+	inputKeySearch = document.getElementById("keyWordSearch").value;
 	var requestOptions = {
 		part: 'snippet',
 		q: inputKeySearch,
@@ -40,7 +40,7 @@ function onSearchResponse(response) {
     var prevVis = prevPageToken ? false : true;
     document.getElementById("prev-button").disabled = prevVis;
 
-	 showResponse(response);	
+	 showResponse(response);
 }
 
 function showResponse(response) {
@@ -64,9 +64,9 @@ function showResponse(response) {
 		var infoText = document.createElement("a");
 		var titleText = document.createTextNode(response.items[i].snippet.title);
 		infoText.appendChild(titleText);
-		divMediaB.appendChild(infoText);	
-		divMedia.appendChild(divMediaB);	
-		listElement.appendChild(divMedia);	
+		divMediaB.appendChild(infoText);
+		divMedia.appendChild(divMediaB);
+		listElement.appendChild(divMedia);
 		document.getElementById("search-list").appendChild(listElement);
 	}
 }
@@ -106,7 +106,7 @@ function onPlayerStateChange(event) {
 }
 
 function onPlayerReady() {
-	
+
 }
 
 function createPlayer() {
@@ -126,7 +126,7 @@ function saveToPlaylist(){
 	var videoData = {};
 	videoData.id =  player.getVideoData()['video_id'];
 	videoData.title =  player.getVideoData()['title'];
-	
+
 	videoList.push(videoData);
 	var msj="<strong>The video has been successfully saved to playlist</strong>";
 	showAlert(msj);
@@ -204,7 +204,7 @@ function playlistView(){
 function searchView(){
 	player.destroy();
 	searchCurrentId = "";
-	$("#container").load("search.html",function(){ 
+	$("#container").load("search.html",function(){
 		player = new YT.Player('player', {
 			//height: '390',
 			//width: '640',
@@ -219,7 +219,7 @@ function searchView(){
 	});
 }
 
-function showPlaylist(){		
+function showPlaylist(){
 	if(videoList.length>0){
 		totalPages = Math.ceil(videoList.length / elemByPag)-1;
 		if(currentPage>totalPages){
@@ -239,7 +239,7 @@ function showPagePlaylist(){
 	if(videoList.length > pag){
 		pagina = videoList.slice(pag, pag + elemByPag);
 		clearList();
-		for (var i =0; i<pagina.length; i++) {	
+		for (var i =0; i<pagina.length; i++) {
 			var listElement = document.createElement("li");
 			listElement.className = "list-group-item";
 			if(elemPlaylist==i+currentPage*elemByPag){
@@ -251,7 +251,7 @@ function showPagePlaylist(){
 			listElement.addEventListener("click", function playDirect() {
 				player.loadVideoById(this.idvideo);
 				elemPlaylist=this.positionlist+currentPage*elemByPag;
-				$(this).addClass('active').siblings().removeClass('active');		
+				$(this).addClass('active').siblings().removeClass('active');
 			});
 			var divMedia = document.createElement("div");
 			divMedia.className = "media";
@@ -260,8 +260,8 @@ function showPagePlaylist(){
 			var infoText = document.createElement("a");
 			var titleText = document.createTextNode(pagina[i].title);
 			infoText.appendChild(titleText);
-			divMediaB.appendChild(infoText);	
-			divMedia.appendChild(divMediaB);	
+			divMediaB.appendChild(infoText);
+			divMedia.appendChild(divMediaB);
 			listElement.appendChild(divMedia);
 			document.getElementById("play-list").appendChild(listElement);
 		}
@@ -279,7 +279,7 @@ function previousPageList(){
 }
 
 function clearList(){
-	var childPlayList = document.getElementsByClassName("list-group-item");		
+	var childPlayList = document.getElementsByClassName("list-group-item");
 	if(childPlayList.length>0){
 		for(var a = childPlayList.length-1; 0 <= a; a--){
 			if(childPlayList[a] && childPlayList[a].parentElement){
