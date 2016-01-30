@@ -17,6 +17,13 @@ function onYouTubeApiLoad() {
     gapi.client.setApiKey('AIzaSyCof2cba1gVvh3rRscjl59wZOSBpD634PA');
 }
 
+function onSearchViewReady(){
+	var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+}
+
 function search(pageToken) {
 	inputKeySearch = document.getElementById("keyWordSearch").value;
 	var requestOptions = {
