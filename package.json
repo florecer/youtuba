@@ -1,0 +1,29 @@
+{
+  "name": "youtuba",
+  "version": "1.0.0",
+  "description": "youtube light player",
+  "main": "''",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "./node_modules/.bin/eslint app/views/js/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamons/youtuba.git"
+  },
+  "keywords": [
+    "youtube",
+    "player",
+    "api"
+  ],
+  "author": "multiple",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamons/youtuba/issues"
+  },
+  "homepage": "https://github.com/jamons/youtuba#readme",
+  "devDependencies": {
+    "eslint": "^1.10.3",
+    "eslint-config-airbnb": "^4.0.0"
+  }
+}

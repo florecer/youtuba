@@ -6,13 +6,15 @@
 
 ### Development Setup
 
-- __fill me__
+- `$ npm install`
 
 ### Development Guidelines
 
 - start a branch for new `features, bug-fixes, experimental-stuff`.
+- lint js files before push something `$ npm run lint`
+- resolve any lint errors
 - to request a merge create a new `pull request`.
-- we do not allow merging to master without previous revision.
+- ping the repository author to make a review.
 
 ### CSS Guidelines
 
