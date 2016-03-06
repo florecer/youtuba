@@ -1,20 +1,39 @@
-.alert {
-    padding: 6px;
+a, a:hover {
+	cursor: pointer;
+	text-decoration: none;
+	font-size: 16px;
 }
-.btn[disabled]{
+.alert {
+    padding: 5px;
+	margin-bottom: 0px;
+	font-size: 24px;
+	text-align: center;
+}
+.btn {
+	font-size: 24px;
+	
+}
+.btn[disabled] {
 	cursor: auto;
 }
-.list-group-item{
-	cursor: pointer;
+.form-control {
+	font-size: 24px;
+	height: 48px;
 }
-.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover{
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
 	background-color: #D2E7F9;
 	color: #000;
+}
+.media-object {
+	height: 50px;
+}
+p {
+	font-size: 16px;
 }
 .row {
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
-ul	{
+ul {
 	list-style: outside none none;
 }
