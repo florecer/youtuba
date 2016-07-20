@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Search</title>
+  </head>
+  <body>
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div id="player"></div>
+    <div>
+
+      Search by keyword:
+      <input type="text" id="keyWordSearch" placeholder="to search"><button id="searchByKeyword"  onclick="search()">Search</button>
+      <button id="searchById" onclick="getUsrInput()">Play!</button><br>
+      <p id="keyWordSearchDisplay"></p><button onclick="showKeyWordSearch()">Show findings</button>
+    </div>
+    <pre id="response"></pre>
+    <!-- staging -->
+
+    <!-- end staging -->
+    <script src="app/js/search.js" type="text/javascript"></script>
+    <script src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
+    <!--<script src="js/auth.js"></script>-->
+  </body>
+</html>
